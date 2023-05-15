@@ -31,5 +31,7 @@ module.exports = (sequelize) => {
     rating: {
       type: DataTypes.INTEGER,
     },
-  });
+  },
+  {timestamps: false}
+  );
 };
