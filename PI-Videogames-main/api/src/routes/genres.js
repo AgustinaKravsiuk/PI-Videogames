@@ -9,7 +9,7 @@ router.get('/', async (req, res) => {
     try {
         const genresDB = await Genre.findAll(); 
         if(genresDB.length) return res.status(200).json(genresDB);
-        const genresAPI = await axios.get(`https://api.rawg.io/api/genres?api_key=${API_KEY}`);
+        const genresAPI = await axios.get(`https://api.rawg.io/api/genres?key=${API_KEY}`);
         const leakedGenres = genresAPI.data.results;
         leakedGenres.forEach(async genre => {
             await Genre.findOrCreate({
