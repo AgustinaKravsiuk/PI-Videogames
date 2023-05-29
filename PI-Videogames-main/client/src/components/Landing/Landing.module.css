@@ -1,0 +1,28 @@
+.landingContainer{
+    background-image: url('../../assets/img/BackLanding1.gif');
+    width: 100vw;
+    height: 100vh;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    background-position: center;
+}
+
+.textButton{
+    color: #DAC5B0;
+    font-family: monospace;
+    text-decoration: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.buttonLanding{
+    background-color: #943A61;
+    width: 170px;
+    height: 60px;
+    margin: 5px;
+    border-style: solid;
+    border-color: transparent;
+    border-radius: 8px;
+}

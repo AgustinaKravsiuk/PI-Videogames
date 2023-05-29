@@ -1,0 +1,20 @@
+.navBarContainer {
+    background-color: #1B5B79;
+    display: flex;
+    justify-content:center;
+    position: fixed;
+    border-bottom: solid;
+    border-color: yellow;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    width: 100%;
+}
+
+.filtersContainer {
+    display: flex;
+
+}
+
+.searchBarContainer {
+    
+}

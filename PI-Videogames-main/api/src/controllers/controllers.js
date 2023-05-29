@@ -126,7 +126,7 @@ const getGameByName = async (name) => {
     if (allGamesFound.length !== 0) {
         return allGamesFound;
     } else {
-        throw Error('404 NOT FOUND: please try with other name');
+        throw Error('Videojuego no encontrado, intente con otro nombre');
     }
 };
 
@@ -171,7 +171,7 @@ const getGameById = async (idVideogame) => {
         const dbGame = await getDbGameById(idVideogame);
         return dbGame;
     }else{
-        throw Error('404 videogame not found');
+        throw Error('Videojuego no encontrado');
     }
 
 };
@@ -179,17 +179,17 @@ const getGameById = async (idVideogame) => {
 const validatePostData = (req, res, next) => {
     const { name, description, platforms, background_image, released, rating, genres } = req.body;
     if( !name) {
-        return res.status(400).json({ error: 'Please enter a name' });
+        return res.status(400).json({ error: 'Ingrese un nombre' });
     } else if (!description) {
-        return res.status(400).json({ error: 'Please enter a description' });
+        return res.status(400).json({ error: 'Ingrese una descripción' });
     } else if (platforms.length === 0) {
-        return res.status(400).json({ error: 'Please enter platforms' });
+        return res.status(400).json({ error: 'Ingrese al menos una plataforma' });
     } else if (!background_image) {
-        return res.status(400).json({ error: 'Please enter a image' });
+        return res.status(400).json({ error: 'Ingrese una imagen' });
     } else if (!released) {
-        return res.status(400).json({ error: 'Please enter a released date' });
+        return res.status(400).json({ error: 'Ingrese la fecha de lanzamiento' });
     } else if (!rating) {
-        return res.status(400).json({ error: 'Please enter a rating' });
+        return res.status(400).json({ error: 'Ingrese el rating' });
     }
     next();
 };
