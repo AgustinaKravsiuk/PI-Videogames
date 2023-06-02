@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllGenres, postNewGame } from '../../redux/actionCreators';
 import { useNavigate } from "react-router-dom";
+import styles from '../CreateGame/CreateGame.module.css'
 
 const CreateGame = () => {
     const [form, setForm] = useState({
@@ -99,65 +100,65 @@ const CreateGame = () => {
     };
 
     return (
-        <form onSubmit={(event) => handleSubmit(event)} onReset={(event) => handleReset(event)} >
-            <fieldset>
-                <legend>Crea un juego</legend>
-                <div>
-                    <input type="text" id="name" value={form.name} name="name" onChange={(event) => handleChange(event)} />
-                    <label htmlFor="name">Nombre: </label>
+        <form onSubmit={(event) => handleSubmit(event)} onReset={(event) => handleReset(event)} className={styles.createGameContainer}>
+            <fieldset className={styles.fieldsetContainer}>
+                <legend className={styles.legend}>Crea un juego</legend>
+                <div className={styles.divContainer}>
+                    <label htmlFor="name" className={styles.labelForm}>Nombre:</label>
+                    <input type="text" id="name" value={form.name} name="name" onChange={(event) => handleChange(event)} className={styles.inputForm}/>
                     <p>{errors.name}</p>
                 </div>
-                <div>
-                    <input type="text" id="image" value={form.background_image} name="background_image" onChange={(event) => handleChange(event)} />
-                    <label htmlFor="image">Imagen: </label>
+                <div className={styles.divContainer}>
+                    <label htmlFor="image" className={styles.labelForm}>Imagen:</label>
+                    <input type="text" id="image" value={form.background_image} name="background_image" onChange={(event) => handleChange(event)} className={styles.inputForm} />
                     <p>{errors.background_image}</p>
                 </div>
-                <div>
-                    <label htmlFor="description">Descripción: </label>
-                    <textarea id="description" cols='30' rows='10' value={form.description} name='description' onChange={(event) => handleChange(event)} />
+                <div className={styles.divContainer}>
+                    <label htmlFor="description" className={styles.labelForm}>Descripción:</label>
+                    <textarea id="description" cols='30' rows='10' value={form.description} name='description' onChange={(event) => handleChange(event)} className={styles.textareaForm} />
                     <p>{errors.description}</p>
                 </div>
-                <div>
-                    <label htmlFor="platforms">Plataformas: </label>
+                <div className={styles.divContainer}>
+                    <label htmlFor="platforms" className={styles.labelForm}>Plataformas:</label>
                     {
                         platforms?.sort().map((platform) => {
                             return (
                                 <div id="platforms" >
-                                    <input type="checkbox" value={platform} name='platfoms' onClick={(event) => handleClickPlatforms(event)} />
-                                    <label htmlFor="platform">{platform}</label>
+                                    <input type="checkbox" value={platform} name='platfoms' onClick={(event) => handleClickPlatforms(event)}  />
+                                    <label htmlFor="platform" className={styles.checksForm}>{platform}</label>
                                 </div>
                             );
                         })
                     }
                     <p>{errors.platforms}</p>
                 </div>
-                <div>
-                    <label htmlFor="released">Fecha de Lanzamiento: </label>
-                    <input type="date" id="released" value={form.released} name= 'released' onChange={(event) => handleChange(event)} />
+                <div className={styles.divContainer}>
+                    <label htmlFor="released" className={styles.labelForm}>Fecha de Lanzamiento:</label>
+                    <input type="date" id="released" value={form.released} name='released' onChange={(event) => handleChange(event)} className={styles.inputForm}/>
                     <p>{errors.released}</p>
                 </div>
-                <div>
-                    <label htmlFor="rating">Rating: </label>
-                    <input type="number" id="rating" value={form.rating} name="rating" onChange={(event) => handleChange(event)} min="0" step="0.5" />
+                <div className={styles.divContainer}>
+                    <label htmlFor="rating" className={styles.labelForm}>Rating:</label>
+                    <input type="number" id="rating" value={form.rating} name="rating" onChange={(event) => handleChange(event)} min="0" step="0.5" className={styles.inputFormRating}/>
                     <p>{errors.rating}</p>
                 </div>
-                <div>
-                    <label htmlFor="genres">Géneros: </label>
+                <div className={styles.divContainer}>
+                    <label htmlFor="genres" className={styles.labelForm}>Géneros:</label>
                     {
-                        genres.sort((a,b) => (a.name > b.name ? 1 : -1 )).length ? genres.map((genre) => {
+                        genres.sort((a, b) => (a.name > b.name ? 1 : -1)).length ? genres.map((genre) => {
                             return (
                                 <div>
-                                    <label htmlFor={genre.name} key={genre.id}>{genre.name}</label>
-                                    <input type="checkbox" id={genre.name} value={genre.name} onClick={(event) => handleClickGenres(event)} />
+                                    <label htmlFor={genre.name} key={genre.id} className={styles.checksForm}>{genre.name}</label>
+                                    <input type="checkbox" id={genre.name} value={genre.name} onClick={(event) => handleClickGenres(event)}  />
                                 </div>
                             );
                         }) : <div></div>
                     }
                     <p>{errors.genres}</p>
                 </div>
+                <input type="submit" value="Crear juego" className={styles.buttonForm} />
+                <input type="reset" value="Restablecer formulario" className={styles.buttonForm} />
             </fieldset>
-            <input type="submit" value="Crear juego" />
-            <input type="reset" value="Restablecer formulario" />
         </form>
     );
 };

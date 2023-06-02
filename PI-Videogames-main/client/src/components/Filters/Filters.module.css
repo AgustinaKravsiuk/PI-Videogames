@@ -1,0 +1,28 @@
+.filtersContainer{
+    display: flex;
+    justify-content: space-around;
+    margin-top: 60px;
+    padding-bottom: 20px;
+    /* background: linear-gradient(180deg, rgba(0, 0, 0, 1) 0%, #5B7D97 80%); */
+    font-family: monospace;
+    font-weight: bold;
+    font-size: x-large;
+}
+
+.selectFilter {
+    overflow:hidden;
+    width:250px;
+    background-color: #DAC5B0;
+    border-style: solid;
+    border-color:#943A61;
+    font-family: monospace;
+    color: #943A61;
+    cursor: pointer;
+ }
+
+ .divFilter{
+    display: flex;
+    flex-direction: column;
+    color: #943A61;
+
+ }

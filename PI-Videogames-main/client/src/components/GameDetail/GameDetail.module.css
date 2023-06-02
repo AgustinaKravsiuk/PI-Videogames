@@ -1,0 +1,62 @@
+.cargando {
+    font-family: monospace;
+    color: #943A61;
+}
+
+.detailContainer{
+    background-color: #5B7D97;
+    position: absolute;
+    width: 100%;
+    height: 150vh;
+}
+
+.divGameDetail {
+    margin: 60px;
+    background-color: #DAC5B0;
+    border-style: solid;
+    border-color:#943A61;
+    font-family: monospace;
+}
+
+.imgInfo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.imageContainer {
+    /* width: 470px;
+    height: 370px; */
+    width: 100%;
+    height: 100%;
+    position: relative;
+    clip-path: polygon(10% 0, 100% 0, 90% 100%, 0% 100%);
+    overflow: hidden; 
+    border-top: 5px solid #1B5B79;
+    border-bottom: 5px solid #1B5B79;
+    margin: 5px;
+    
+}
+
+.imageDetail {
+    object-fit: cover;
+    width:100%;
+    height:100%;
+}
+
+.lettersDetail {
+    font-family: monospace;
+    color:#1B5B79;
+}
+
+.nameDetail {
+    font-size: 40px;
+}
+
+.infoDetail {
+    font-size:x-large;
+}
+
+.divDescription {
+    color:#1B5B79;
+}

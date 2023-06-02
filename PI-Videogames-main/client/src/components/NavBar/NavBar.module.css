@@ -1,20 +1,13 @@
 .navBarContainer {
     background-color: #1B5B79;
     display: flex;
-    justify-content:center;
+    justify-content: space-evenly;
+    align-items: center;
     position: fixed;
+    z-index: 100;
     border-bottom: solid;
-    border-color: yellow;
-    border-bottom-left-radius: 5px;
-    border-bottom-right-radius: 5px;
+    border-color: #943A61;
     width: 100%;
-}
-
-.filtersContainer {
-    display: flex;
-
-}
-
-.searchBarContainer {
+    height: 7%;
     
 }

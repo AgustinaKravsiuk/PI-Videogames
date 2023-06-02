@@ -1,27 +1,47 @@
 import React from "react";
-import style from '../Paginated/Paginated.module.css'
+import styles from '../Paginated/Paginated.module.css'
 
-const Paginated = ({ max, pag, setPag, inputPag, setInputPag }) => {
+const Paginated = ({ max, pagina, setPagina, inputPag, setInputPag }) => {
     const handleNextPage = () => {
         setInputPag(inputPag + 1);
-        setPag(pag + 1);
+        setPagina(pagina + 1);
     };
 
     const handlePreviousPage = () => {
         setInputPag(inputPag - 1);
-        setPag(pag - 1);
+        setPagina(pagina - 1);
     };
 
     const onChange = (event) => {
         setInputPag(event.target.value);
     };
 
+    const onKeyDown = (event) => {
+        if(event.keyCode === 13) {
+          setPagina(parseInt(event.target.value));
+          if(
+            parseInt(event.target.value ) < 1 || 
+            parseInt(event.target.value) > Math.ceil(max) || 
+            isNaN(parseInt(event.target.value))
+          ) {
+            setPagina(1);
+            setInputPag(1);
+          } else {
+            setPagina(parseInt(event.target.value));
+          }
+        }
+      }
+    
+    const previous = '<';
+    const next = '>';
+
+
     return (
-        <div className={style.paginatedContainer}>
-            <button onClick={handlePreviousPage} disabled={pag === 1 || pag < 1}>Anterior</button>
-            <input type="text" value={inputPag} onChange={(event) => onChange(event)} />
+        <div className={styles.paginatedContainer}>
+            <button onClick={handlePreviousPage} disabled={pagina === 1 || pagina < 1} className={styles.paginatedButton}>{previous}</button>
+            <input type="text" value={inputPag} onChange={(event) => onChange(event)} onKeyDown={(event) => onKeyDown(event)} className={styles.inputPaginated}/>
             <p>de {max}</p>
-            <button onClick={handleNextPage} disabled={pag === Math.ceil(max)  || pag > Math.ceil(max)}>Siguiente</button>
+            <button onClick={handleNextPage} disabled={pagina === Math.ceil(max)  || pagina > Math.ceil(max)} className={styles.paginatedButton}>{next}</button>
         </div>
     );
 };

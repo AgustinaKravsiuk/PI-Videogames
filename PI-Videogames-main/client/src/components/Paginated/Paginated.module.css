@@ -2,4 +2,42 @@
     background-color: #5B7D97;
     position: absolute;
     width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: monospace;
+    font-weight: bold;
+    font-size: x-large;
+    color: #943A61;
+}
+
+.paginatedButton{
+    border: 0;
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+    font-family: monospace;
+    font-weight: bold;
+    font-size: x-large;
+    clip-path: polygon(10% 0, 100% 0, 90% 100%, 0% 100%);
+    color: #DAC5B0;
+    background-color: #943A61;
+    text-decoration: none;
+}
+
+.inputPaginated{
+    overflow:hidden;
+    width: 30px;
+    height: 30px;
+    padding-left: 10px;
+    background-color: #5B7D97;
+    border-style: none;
+    border-color:#5B7D97;
+    font-family: monospace;
+    font-weight: bold;
+    font-size: x-large;
+    color: #943A61;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }

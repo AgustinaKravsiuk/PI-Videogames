@@ -15,14 +15,20 @@
     display: flex;
     justify-content: center;
     align-items: center;
-}
+}   
 
 .buttonLanding{
-    background-color: #943A61;
+    position: absolute;
+    top: 46%;
+    left: 47%;
     width: 170px;
     height: 60px;
-    margin: 5px;
-    border-style: solid;
-    border-color: transparent;
-    border-radius: 8px;
+    border: 0;
+    padding: 0.8em;
+    cursor: pointer;
+    font-size: x-large;
+    clip-path: polygon(10% 0, 100% 0, 90% 100%, 0% 100%);
+    color: #DAC5B0;
+    background-color: #943A61;
+    text-decoration: none;
 }

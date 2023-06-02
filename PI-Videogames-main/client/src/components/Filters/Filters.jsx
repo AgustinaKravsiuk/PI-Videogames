@@ -1,8 +1,9 @@
 import React from 'react';
+import styles from '../Filters/Filters.module.css'
 
 const Filters = ({ handleChangeByName, handleChangeByRating, handleChangeCreation, handleChangeGenres, genres }) => {
     const arrOptions = [
-        { value: 'DEFAULT', name: 'Géneros' },
+        { value: 'DEFAULT', name: 'Seleccionar' },
         { value: 'Action', name: 'Acción' },
         { value: 'Arcade', name: 'Arcade' },
         { value: 'Adventure', name: 'Aventura' },
@@ -25,40 +26,46 @@ const Filters = ({ handleChangeByName, handleChangeByRating, handleChangeCreatio
     ]
 
     return (
-        <div>
-            <div>
-                <label htmlFor='allGames'>Juegos
-                    <select name='filterByCreation' id='allGames' onChange={(event) => handleChangeCreation(event)} >
-                        <option value="DEFAULT" disabled selected hidden>Juegos</option>
+        <div className={styles.filtersContainer}>
+
+            <div className={styles.divFilter}>
+                <label htmlFor='allGames'>
+                    <div>Juegos</div>
+                    <select name='filterByCreation' id='allGames' onChange={(event) => handleChangeCreation(event)} defaultValue='default' className={styles.selectFilter}>
+                        <option value="default" disabled hidden>Seleccionar</option>
                         <option value="existing">Disponible</option>
                         <option value="created">Creado</option>
                     </select>
                 </label>
             </div>
 
-            <div>
-                <label htmlFor='allGenres'>Géneros
-                    <select name='filterByGenre' id='allGenres' onChange={(event) => handleChangeGenres(event)}>
+            <div className={styles.divFilter}>
+                <label htmlFor='allGenres'>
+                    <div>Géneros</div>
+                    <select name='filterByGenre' id='allGenres' onChange={(event) => handleChangeGenres(event)} className={styles.selectFilter}>
                         {arrOptions.map(elem =>
-                            <option value={elem.value}>{elem.name}</option>)}
+                            <option value={elem.value} key={elem.name}>{elem.name}</option>)
+                        }
                     </select>
                 </label>
             </div>
 
-            <div>
-                <label htmlFor='orderByName'>Ordenar por nombre
-                    <select name='orderByName' id='orderByName' onChange={(event) => handleChangeByName(event)}>
-                        <option value="" disabled hidden selected>Alfabético</option>
+            <div className={styles.divFilter}>
+                <label htmlFor='orderByName'>
+                    <div>Orden alfabético</div>
+                    <select name='orderByName' id='orderByName' onChange={(event) => handleChangeByName(event)} defaultValue='default' className={styles.selectFilter}>
+                        <option value="default" disabled hidden>Seleccionar</option>
                         <option value="ASC">A-Z</option>
                         <option value="DESC">Z-A</option>
                     </select>
                 </label>
             </div>
 
-            <div>
-                <label htmlFor='orderByRating'>Ordenar por rating
-                    <select name='orderByRating' id='orderByRating' onChange={(event) => handleChangeByRating(event)}>
-                        <option value="" disabled hidden selected>Rating</option>
+            <div className={styles.divFilter}>
+                <label htmlFor='orderByRating'>
+                    <div>Orden por rating</div>
+                    <select name='orderByRating' id='orderByRating' onChange={(event) => handleChangeByRating(event)} defaultValue='default' className={styles.selectFilter}>
+                        <option value="default" disabled hidden >Seleccionar</option>
                         <option value="ASC">min. rating</option>
                         <option value="DESC">max. rating</option>
                     </select>

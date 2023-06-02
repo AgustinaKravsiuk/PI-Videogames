@@ -1,0 +1,40 @@
+.searchBarContainer {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 70%;
+}
+
+.searchBarInput {
+    background-color: #DAC5B0;
+    width: 270px;
+    height: 40px;
+    border-style: solid;
+    border-color:#943A61;
+    margin: 5px;
+    font-family: monospace;
+    cursor: text;
+}
+
+.searchBarButton {
+    border: 0;
+    padding: 0.8em;
+    height: 40px;
+    cursor: pointer;
+    font-family: monospace;
+    font-size: medium;
+    clip-path: polygon(10% 0, 100% 0, 90% 100%, 0% 100%);
+    color: #DAC5B0;
+    background-color: #943A61;
+    display: flex;
+    align-items: center;
+}
+
+.searchBarButton:hover{
+    color: #943A61;
+    background-color: #DAC5B0;
+}
+
+img {
+    width: 15px; 
+}

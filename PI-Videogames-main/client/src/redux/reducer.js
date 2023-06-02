@@ -43,7 +43,7 @@ const rootReducer = (state=initialState, action) => {
             }
         case FILTER_BY_GENRE:
             const allGames1 = state.allGames;
-            const filterGenres = allGames1.filter((game) => game.genres.inclues(action.payload));
+            const filterGenres = allGames1.filter((game) => game.genres.includes(action.payload));
             return {
                 ...state,
                 games: filterGenres
@@ -64,7 +64,7 @@ const rootReducer = (state=initialState, action) => {
             }
         case ORDER_BY_NAME:
             if (action.payload === 'ASC') {
-                let orderNameAsc = state.game.sort((a, b) => {
+                let orderNameAsc = state.games.sort((a, b) => {
                     if (a.name > b.name) return 1;
                     if (b.name > a.name) return -1;
                     return 0

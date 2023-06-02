@@ -24,7 +24,6 @@ export const getGameByName = (name) => {
     return async (dispatch) => {
         try {
             const response = await axios.get(`http://localhost:3001/videogames?name=${name}`);
-            console.log('respo', response)
             const game = response.data;
             return dispatch({
                 type: GET_GAME_BY_NAME,
@@ -112,7 +111,7 @@ export const orderByRating = (orderRating) => {
 export const postNewGame = (game) => {
     return async (dispatch) => {
         try {
-            const response = await axios.post(`http://localhost:3001/videogames`, game);
+            const response = await axios.post(`http://localhost:3001/videogames`,game);
             return dispatch({
                 type: POST_NEW_GAME,
                 payload: response
@@ -122,6 +121,6 @@ export const postNewGame = (game) => {
                 type: ERROR,
                 payload: error.message
             });
-        };
+        }
     };
 };

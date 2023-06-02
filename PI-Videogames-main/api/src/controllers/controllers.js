@@ -126,7 +126,7 @@ const getGameByName = async (name) => {
     if (allGamesFound.length !== 0) {
         return allGamesFound;
     } else {
-        throw Error('Videojuego no encontrado, intente con otro nombre');
+        throw Error(' 404 Videojuego no encontrado, intente con otro nombre');
     }
 };
 
@@ -171,7 +171,7 @@ const getGameById = async (idVideogame) => {
         const dbGame = await getDbGameById(idVideogame);
         return dbGame;
     }else{
-        throw Error('Videojuego no encontrado');
+        throw Error('404 Videojuego no encontrado');
     }
 
 };
@@ -190,6 +190,8 @@ const validatePostData = (req, res, next) => {
         return res.status(400).json({ error: 'Ingrese la fecha de lanzamiento' });
     } else if (!rating) {
         return res.status(400).json({ error: 'Ingrese el rating' });
+    } else if (!genres || genres.length === 0) {
+        return res.status(400).json({ error: 'Ingrese al menos un género' });
     }
     next();
 };

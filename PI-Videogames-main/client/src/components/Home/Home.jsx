@@ -1,9 +1,11 @@
+import React from "react";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from 'react-redux';
 import { filterByCreation, filterByGenre, getAllGames, getAllGenres, orderByName, orderByRating } from "../../redux/actionCreators";
 import NavBar from '../NavBar/NavBar';
-import Paginated from '../Paginated/Paginated';
+import Filters from "../Filters/Filters";
 import Card from '../Card/Card';
+import Paginated from '../Paginated/Paginated';
 import styles from './Home.module.css'
 
 const Home = () => {
@@ -60,22 +62,27 @@ const Home = () => {
         <div className={styles.homeContainer}>
             <>
                 <NavBar setPagina={setPagina} setInputPag={setInputPag} handleChangeByName={handleChangeByName} handleChangeByRating={handleChangeByRating} handleChangeCreation={handleChangeCreation} handleChangeGenres={handleChangeGenres} genres={genres} />
-                <div>
+                <div className={styles.filtersContainer}>
+                    <Filters setPagina={setPagina} setInputPag={setInputPag} handleChangeByName={handleChangeByName} handleChangeByRating={handleChangeByRating} handleChangeCreation={handleChangeCreation} handleChangeGenres={handleChangeGenres} genres={genres} />
+                </div>
+                <div className={styles.cardsContainer}>
                     {
-                        currentGames.map((game) => {
-                            return (
-                                <div>
-                                    <Card
-                                        id={game.id}
-                                        key={game.id}
-                                        background_image={game.background_image}
-                                        name={game.name}
-                                        genres={game.genres.join(', ')}
-                                        rating={game.rating}
-                                    />
-                                </div>
-                            );
-                        })
+                        currentGames.length ?
+                            currentGames.map((game) => {
+
+                                return (
+                                    <div className={styles.divCard}>
+                                        <Card
+                                            id={game.id}
+                                            key={game.id}
+                                            background_image={game.background_image}
+                                            name={game.name}
+                                            genres={game.genres.join(', ')}
+                                            rating={game.rating}
+                                        />
+                                    </div>
+                                );
+                            }) : <div> Cargando... </div>
                     }
                 </div>
                 <Paginated max={max} pagina={pagina} setPagina={setPagina} inputPag={inputPag} setInputPag={setInputPag} />
