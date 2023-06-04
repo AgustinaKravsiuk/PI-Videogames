@@ -40,7 +40,7 @@ const Paginated = ({ max, pagina, setPagina, inputPag, setInputPag }) => {
         <div className={styles.paginatedContainer}>
             <button onClick={handlePreviousPage} disabled={pagina === 1 || pagina < 1} className={styles.paginatedButton}>{previous}</button>
             <input type="text" value={inputPag} onChange={(event) => onChange(event)} onKeyDown={(event) => onKeyDown(event)} className={styles.inputPaginated}/>
-            <p>de {max}</p>
+            <p>of {max}</p>
             <button onClick={handleNextPage} disabled={pagina === Math.ceil(max)  || pagina > Math.ceil(max)} className={styles.paginatedButton}>{next}</button>
         </div>
     );

@@ -1,28 +1,39 @@
 import React from 'react';
-import styles from '../Filters/Filters.module.css'
+import { useDispatch } from "react-redux";
+import { getAllGames } from "../../redux/actionCreators";
+import styles from '../Filters/Filters.module.css';
+import img from '../../assets/img/icons-actualizar-clara.png';
 
-const Filters = ({ handleChangeByName, handleChangeByRating, handleChangeCreation, handleChangeGenres, genres }) => {
+const Filters = ({ handleChangeByName, handleChangeByRating, handleChangeCreation, handleChangeGenres }) => {
+    const dispatch = useDispatch();
+
+    const handleClick = (event) => {
+        event.preventDefault();
+        dispatch(getAllGames());
+    };
+    
+
     const arrOptions = [
-        { value: 'DEFAULT', name: 'Seleccionar' },
-        { value: 'Action', name: 'Acción' },
+        { value: 'DEFAULT', name: 'Select' },
+        { value: 'Action', name: 'Action' },
+        { value: 'Adventure', name: 'Adventure' },
         { value: 'Arcade', name: 'Arcade' },
-        { value: 'Adventure', name: 'Aventura' },
-        { value: 'Racing', name: 'Carreras' },
-        { value: 'Card', name: 'Cartas' },
+        { value: 'Board Games', name: 'Board Games' },
+        { value: 'Card', name: 'Card' },
         { value: 'Casual', name: 'Casual' },
-        { value: 'Sports', name: 'Deportes' },
-        { value: 'Shooter', name: 'Disparos' },
-        { value: 'Educational', name: 'Educativo' },
-        { value: 'Strategy', name: 'Estrategia' },
-        { value: 'Family', name: 'Familiar' },
-        { value: 'Indie', name: 'Independiente' },
-        { value: 'Board Games', name: 'Juegos de Mesa' },
-        { value: 'Fighting', name: 'Lucha' },
-        { value: 'Massively Multiplayer', name: 'Multijugador Masivo' },
-        { value: 'Platformer', name: 'Plataformas' },
+        { value: 'Educational', name: 'Educational' },
+        { value: 'Family', name: 'Family' },
+        { value: 'Fighting', name: 'Fighting' },
+        { value: 'Indie', name: 'Indie' },
+        { value: 'Massively Multiplayer', name: 'Massively Multiplayer' },
+        { value: 'Platformer', name: 'Platformer' },
         { value: 'Puzzle', name: 'Puzzle' },
+        { value: 'Racing', name: 'Racing' },
         { value: 'RPG', name: 'RPG' },
-        { value: 'Simulation', name: 'Simulación' },
+        { value: 'Shooter', name: 'Shooter' },
+        { value: 'Simulation', name: 'Simulation' },
+        { value: 'Sports', name: 'Sports' },        
+        { value: 'Strategy', name: 'Strategy' },
     ]
 
     return (
@@ -30,18 +41,18 @@ const Filters = ({ handleChangeByName, handleChangeByRating, handleChangeCreatio
 
             <div className={styles.divFilter}>
                 <label htmlFor='allGames'>
-                    <div>Juegos</div>
+                    <div>Games</div>
                     <select name='filterByCreation' id='allGames' onChange={(event) => handleChangeCreation(event)} defaultValue='default' className={styles.selectFilter}>
-                        <option value="default" disabled hidden>Seleccionar</option>
-                        <option value="existing">Disponible</option>
-                        <option value="created">Creado</option>
+                        <option value="default" disabled hidden>Select</option>
+                        <option value="existing">Available</option>
+                        <option value="created">Created</option>
                     </select>
                 </label>
             </div>
 
             <div className={styles.divFilter}>
                 <label htmlFor='allGenres'>
-                    <div>Géneros</div>
+                    <div>Genres</div>
                     <select name='filterByGenre' id='allGenres' onChange={(event) => handleChangeGenres(event)} className={styles.selectFilter}>
                         {arrOptions.map(elem =>
                             <option value={elem.value} key={elem.name}>{elem.name}</option>)
@@ -52,9 +63,9 @@ const Filters = ({ handleChangeByName, handleChangeByRating, handleChangeCreatio
 
             <div className={styles.divFilter}>
                 <label htmlFor='orderByName'>
-                    <div>Orden alfabético</div>
+                    <div>Alphabetical order</div>
                     <select name='orderByName' id='orderByName' onChange={(event) => handleChangeByName(event)} defaultValue='default' className={styles.selectFilter}>
-                        <option value="default" disabled hidden>Seleccionar</option>
+                        <option value="default" disabled hidden>Select</option>
                         <option value="ASC">A-Z</option>
                         <option value="DESC">Z-A</option>
                     </select>
@@ -63,14 +74,15 @@ const Filters = ({ handleChangeByName, handleChangeByRating, handleChangeCreatio
 
             <div className={styles.divFilter}>
                 <label htmlFor='orderByRating'>
-                    <div>Orden por rating</div>
+                    <div>Rating order</div>
                     <select name='orderByRating' id='orderByRating' onChange={(event) => handleChangeByRating(event)} defaultValue='default' className={styles.selectFilter}>
-                        <option value="default" disabled hidden >Seleccionar</option>
+                        <option value="default" disabled hidden >Select</option>
                         <option value="ASC">min. rating</option>
                         <option value="DESC">max. rating</option>
                     </select>
                 </label>
             </div>
+            <button onClick={(event) => handleClick(event)} className={styles.button}><img src={img} alt="imageaActualizar"/></button>
         </div>
     );
 };

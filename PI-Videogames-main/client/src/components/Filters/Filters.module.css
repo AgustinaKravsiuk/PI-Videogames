@@ -1,7 +1,7 @@
 .filtersContainer{
     display: flex;
     justify-content: space-around;
-    margin-top: 60px;
+    margin-top: 80px;
     padding-bottom: 20px;
     /* background: linear-gradient(180deg, rgba(0, 0, 0, 1) 0%, #5B7D97 80%); */
     font-family: monospace;
@@ -26,3 +26,15 @@
     color: #943A61;
 
  }
+
+ .button{
+    border: 0;
+    padding: 0.8em;
+    cursor: pointer;
+    font-family: monospace;
+    font-size: medium;
+    clip-path: polygon(10% 0, 100% 0, 90% 100%, 0% 100%);
+    color: #DAC5B0;
+    background-color: #943A61;
+    text-decoration: none;
+}

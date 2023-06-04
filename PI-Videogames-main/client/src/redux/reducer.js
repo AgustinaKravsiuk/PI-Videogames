@@ -43,25 +43,18 @@ const rootReducer = (state=initialState, action) => {
             }
         case FILTER_BY_GENRE:
             const allGames1 = state.allGames;
-            const filterGenres = allGames1.filter((game) => game.genres.includes(action.payload));
+            const filterGenres = allGames1.filter((game) => game?.genres?.includes(action.payload));
             return {
                 ...state,
                 games: filterGenres
             }
-        case FILTER_BY_CREATION:
-            const allGames2 = state.allGames;
-            if (action.payload === 'created'){
-                const filterCreation = allGames2.filter((game) => game.createdInDb)
-                return {
+            case FILTER_BY_CREATION:
+                const allGames2 = state.allGames;
+                const filterCreation = action.payload === 'created' ? allGames2.filter((game) => game.createdInDb) : allGames2;
+                return{
                     ...state,
                     games: filterCreation
                 }
-            } else {
-                return {
-                    ...state,
-                    games:allGames2
-                }
-            }
         case ORDER_BY_NAME:
             if (action.payload === 'ASC') {
                 let orderNameAsc = state.games.sort((a, b) => {

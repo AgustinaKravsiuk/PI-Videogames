@@ -1,13 +1,21 @@
 .navBarContainer {
     background-color: #1B5B79;
     display: flex;
-    justify-content: space-evenly;
+    justify-content: space-around;
     align-items: center;
     position: fixed;
     z-index: 100;
     border-bottom: solid;
     border-color: #943A61;
     width: 100%;
-    height: 7%;
+    height: 10%;
     
+}
+
+.logo {
+    height: 70px;
+    width: 90px;
+    margin: 15px;
+    display: flex;
+    align-items: center;
 }

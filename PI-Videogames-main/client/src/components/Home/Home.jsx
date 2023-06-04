@@ -77,12 +77,12 @@ const Home = () => {
                                             key={game.id}
                                             background_image={game.background_image}
                                             name={game.name}
-                                            genres={game.genres.join(', ')}
+                                            genres={game?.genres?.join(', ') || ''}
                                             rating={game.rating}
                                         />
                                     </div>
                                 );
-                            }) : <div> Cargando... </div>
+                            }) : <div className={styles.cargando}> Loading... </div>
                     }
                 </div>
                 <Paginated max={max} pagina={pagina} setPagina={setPagina} inputPag={inputPag} setInputPag={setInputPag} />

@@ -6,10 +6,10 @@ const { Videogame, Genre } = require('../db')
 
 
 const apiInfoClean = (videogame) => {
-    return{
+    return {
         id: videogame.id,
         name: videogame.name,
-        description: videogame.description? videogame.description : 'sin descripcion',
+        description: videogame.description ? videogame.description : 'sin descripcion',
         platforms: videogame.platforms.map((platform) => platform.platform.name),
         background_image: videogame.background_image,
         released: videogame.released,
@@ -18,10 +18,10 @@ const apiInfoClean = (videogame) => {
     };
 };
 
-const apiVideogames = async() => { 
+const apiVideogames = async () => {
 
     let apiGames = [];
-
+    
     const responses = await Promise.all([
         axios.get(`https://api.rawg.io/api/games?key=${API_KEY}&page=1`),
         axios.get(`https://api.rawg.io/api/games?key=${API_KEY}&page=2`),
@@ -34,78 +34,79 @@ const apiVideogames = async() => {
         apiGames = apiGames.concat(response.data.results);
     });
     const videogames = apiGames.map((game) => apiInfoClean(game));
- 
+
     return videogames;
 };
 
 const dbInfo = async () => {
     const dbVideogames = await Videogame.findAll({
-        include:{
+        include: {
             model: Genre,
             attributes: ['name'],
             through: {
                 attributes: []
-            }    
-        }    
-    });    
+            }
+        }
+    });
 
 
 
     let gameMap = dbVideogames.map((videogame) => {
-        return{
+        return {
             id: videogame.id,
             name: videogame.name,
-            description: videogame.description? videogame.description : 'sin descripcion',
+            description: videogame.description ? videogame.description : 'sin descripcion',
             platforms: videogame.platforms.map((platform) => platform),
             background_image: videogame.background_image,
             released: videogame.released,
             rating: videogame.rating,
-            genres: videogame.genres.map((genre) => genre.name),
+            genres: videogame.genres?.map((genre) => genre.name),
             createdInDb: videogame.createdInDb
-        };    
-    });    
+        };
+    });
     return gameMap;
-};  
+};
 
 const gamesSaved = async () => {
+    console.group('llege al controlador')
     const apiGames = await apiVideogames();
     const dbVideogames = await dbInfo();
     const allGames = apiGames.concat(dbVideogames);
     return allGames
-}; 
+};
 
 const getDbGameByName = async (name) => {
     const games = await Videogame.findAll({
-        where:{
+        where: {
             name: {
                 [Op.iLike]: `%${name}%`
-            }    
+            }
         },
         include: {
             model: Genre,
             attributes: ["name"],
             through: {
                 attributes: []
-            } 
-        }    
-    }); 
+            }
+        }
+    });
 
-    
+
 
     const gamesFound = games.map((videogame) => {
-        return{
-        id: videogame.id,
-        name: videogame.name,
-        description: videogame.description? videogame.description : 'sin descripcion',
-        platforms: videogame.platforms?.map((platform) => platform),
-        background_image: videogame.background_image,
-        released: videogame.released,
-        rating: videogame.rating,
-        genres: videogame.genres?.map((genre) => genre.name),
-        createdInDb: videogame.createdInDb
-    }
+        return {
+            id: videogame.id,
+            name: videogame.name,
+            description: videogame.description ? videogame.description : 'sin descripcion',
+            platforms: videogame.platforms?.map((platform) => platform),
+            background_image: videogame.background_image,
+            released: videogame.released,
+            rating: videogame.rating,
+            genres: videogame.genres?.map((genre) => genre.name),
+            createdInDb: videogame.createdInDb
+        }
     });
-    
+
 
     return gamesFound;
 };
@@ -132,7 +133,7 @@ const getGameByName = async (name) => {
 
 const getDbGameById = async (idVideogame) => {
     const dbGame = await Videogame.findOne({
-        where:{
+        where: {
             id: idVideogame
         },
         include: {
@@ -140,7 +141,7 @@ const getDbGameById = async (idVideogame) => {
             attributes: ['name'],
             through: {
                 attributes: []
-            } 
+            }
         }
     });
 
@@ -149,7 +150,7 @@ const getDbGameById = async (idVideogame) => {
     const gameFound = {
         id: videogame.id,
         name: videogame.name,
-        description: videogame.description? videogame.description : 'sin descripcion',
+        description: videogame.description ? videogame.description : 'sin descripcion',
         platforms: videogame.platforms?.map((platform) => platform),
         background_image: videogame.background_image,
         released: videogame.released,
@@ -162,23 +163,52 @@ const getDbGameById = async (idVideogame) => {
 };
 
 const getGameById = async (idVideogame) => {
-    if(Number(idVideogame)){
+    if (Number(idVideogame)) {
         const response = await axios.get(`https://api.rawg.io/api/games/${idVideogame}?key=${API_KEY}`);
         const game = response.data;
         const apiGame = apiInfoClean(game);
         return apiGame;
-    }else if(!Number(idVideogame)){
+    } else if (!Number(idVideogame)) {
         const dbGame = await getDbGameById(idVideogame);
         return dbGame;
-    }else{
+    } else {
         throw Error('404 Videojuego no encontrado');
     }
 
 };
 
+const postGame = async (name, description, platforms, background_image, released, rating, genres, createdInDb) => {
+    const newGame = await Videogame.create({
+        name,
+        description,
+        platforms,
+        background_image,
+        released,
+        rating,
+        genres,
+        createdInDb
+    });
+
+    const arr = Object.keys(genres);
+
+    arr.forEach(async (genre) => {
+        let dbGenre = await Genre.findAll({
+            where: {
+                name: genre
+            }
+        });
+        if (dbGenre) {
+            newGame.addGenre(dbGenre)
+        } else {
+            throw Error("Intentar con otro género");
+        }
+    });
+    return newGame
+};
+
 const validatePostData = (req, res, next) => {
     const { name, description, platforms, background_image, released, rating, genres } = req.body;
-    if( !name) {
+    if (!name) {
         return res.status(400).json({ error: 'Ingrese un nombre' });
     } else if (!description) {
         return res.status(400).json({ error: 'Ingrese una descripción' });
@@ -190,29 +220,15 @@ const validatePostData = (req, res, next) => {
         return res.status(400).json({ error: 'Ingrese la fecha de lanzamiento' });
     } else if (!rating) {
         return res.status(400).json({ error: 'Ingrese el rating' });
-    } else if (!genres || genres.length === 0) {
-        return res.status(400).json({ error: 'Ingrese al menos un género' });
+    } else if (!genres) {
+        return res.status(400).json({ error: 'Please enter a genre' });
+    } else if (genres.length === 0) {
+        return res.status(400).json({ error: 'Please enter a genre' });
     }
     next();
 };
 
-const postGame = async ( name, description, platforms, background_image, released, rating ) => {
-    const newGame = await Videogame.findOrCreate({
-        where: {
-            name,
-            description,
-            platforms,
-            background_image,
-            released,
-            rating
-        }        
-    });
-    return newGame
-};
-
-
-
-module.exports={
+module.exports = {
     apiInfoClean,
     apiVideogames,
     dbInfo,

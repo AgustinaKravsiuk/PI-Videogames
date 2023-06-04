@@ -3,6 +3,7 @@ import { useDispatch } from "react-redux";
 import { getGameByName } from "../../redux/actionCreators";
 import styles from '../SearchBar/SearchBar.module.css'
 import img from '../../assets/img/icons-lupa-clara.png'
+
 const SearchBar = () => {
     const dispatch = useDispatch();
     const [input, setInput] = useState('');
@@ -25,7 +26,7 @@ const SearchBar = () => {
 
     return (
         <div className={styles.searchBarContainer}>
-            <input type="search" placeholder='  Buscar un juego...' id='searchGame' value={input} onChange={(event) => handleChange(event)} className={styles.searchBarInput} />
+            <input type="search" placeholder=' Search game...' id='searchGame' value={input} onChange={(event) => handleChange(event)} className={styles.searchBarInput} />
             <button type="submit" onClick={(event) => handlerSubmit(event)}className={styles.searchBarButton}>
                 <img src={img} alt="imageLupa"/>
             </button>

@@ -22,6 +22,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    margin: 10px;
 }
 
 .imageContainer {
@@ -59,4 +60,5 @@
 
 .divDescription {
     color:#1B5B79;
+    margin: 10px;
 }

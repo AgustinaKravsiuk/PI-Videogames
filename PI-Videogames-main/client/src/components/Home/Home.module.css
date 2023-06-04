@@ -22,3 +22,8 @@
     margin-left: 3%;
     position: sticky;
 }
+
+.cargando{
+    color: #943A61;
+    font-family: monospace;
+}

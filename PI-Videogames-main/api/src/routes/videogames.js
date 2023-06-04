@@ -34,9 +34,9 @@ router.get('/:idVideogame', async(req, res) => {
 
 
 router.post('/', validatePostData, async(req, res) => {
-    const { name, description, platforms, background_image, released, rating } = req.body;
+    const { name, description, platforms, background_image, released, rating, genres, createdInDb } = req.body;
     try {
-        const gameCreated = await postGame( name, description, platforms, background_image, released, rating );
+        const gameCreated = await postGame( name, description, platforms, background_image, released, rating, genres, createdInDb );
         res.status(200).json(gameCreated);
     } catch (error) {
         res.status(500).json({ error: error.message });
