@@ -5,7 +5,8 @@ import Home from './components/Home/Home';
 import GameDetail from './components/GameDetail/GameDetail';
 import Form from './components/Form/Form';
 import axios from 'axios';
-axios.defaults.baseURL = 'http://localhost:3001/';
+// axios.defaults.baseURL = 'http://localhost:3001/';
+axios.defaults.baseURL = 'pi-videogames-production-53c0.up.railway.app';
 
 function App() {
   return (
