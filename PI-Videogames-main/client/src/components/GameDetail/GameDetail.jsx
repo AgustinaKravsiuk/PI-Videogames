@@ -39,7 +39,7 @@ const GameDetail = () => {
                         </div>
                     </div>
                     <div>
-                        <p dangerouslySetInnerHTML={{__html: game.description}} className={styles.divDescription}/>
+                        <p dangerouslySetInnerHTML={{ __html: game.description }} className={styles.divDescription} />
                     </div>
                 </div>
             </div>

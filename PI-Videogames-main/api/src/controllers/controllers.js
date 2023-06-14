@@ -14,14 +14,15 @@ const apiInfoClean = (videogame) => {
         background_image: videogame.background_image,
         released: videogame.released,
         rating: videogame.rating,
-        genres: videogame.genres.map((genre) => genre.name)
+        genres: videogame.genres.map((genre) => genre.name),
+
     };
 };
 
 const apiVideogames = async () => {
 
     let apiGames = [];
-    
+
     const responses = await Promise.all([
         axios.get(`https://api.rawg.io/api/games?key=${API_KEY}&page=1`),
         axios.get(`https://api.rawg.io/api/games?key=${API_KEY}&page=2`),
@@ -33,6 +34,7 @@ const apiVideogames = async () => {
     responses.forEach((response) => {
         apiGames = apiGames.concat(response.data.results);
     });
+
     const videogames = apiGames.map((game) => apiInfoClean(game));
 
     return videogames;
@@ -68,7 +70,6 @@ const dbInfo = async () => {
 };
 
 const gamesSaved = async () => {
-    console.group('llege al controlador')
     const apiGames = await apiVideogames();
     const dbVideogames = await dbInfo();
     const allGames = apiGames.concat(dbVideogames);

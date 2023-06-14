@@ -48,23 +48,25 @@ const CreateGame = () => {
 
     const handleSubmit = (event) => {
         event.preventDefault();
+        const regexImage = /(http(s?):)([/|.|\w|\s|-])*\.(?:jpg|jpeg|png|gif)/g
 
         if (form.name.trim() === '' || form.name > 10) {
-            return setErrors({ ...errors, name: 'Ingrese un nombre' });
-        } else if (!/(http(s?):)([/|.|\w|\s|-])*\.(?:jpg|jpeg|png|gif)/g.test(form.background_image)) {
-            return setErrors({ ...errors, background_image: 'Ingrese una URL válida' });
+            return setErrors({ ...errors, name: 'Please, enter a name' });
+        } else if (!regexImage.test(form.background_image)) {
+            return setErrors({ ...errors, background_image: 'Please, enter a valid URL' });
         } else if (form.description.trim() === '') {
-            return setErrors({ ...errors, description: 'Ingrese una descripción' });
+            return setErrors({ ...errors, description: 'Please, enter a description' });
         } else if (form.platforms.length === 0 || form.platforms.length > 5) {
-            return setErrors({ ...errors, platforms: 'Ingrese entre 1 y 5 plataformas' });
+            return setErrors({ ...errors, platforms: 'Please, enter between 1 and 5 platforms' });
         } else if (form.released === '') {
-            return setErrors({ ...errors, released: 'Ingrese una fecha de lanzamiento' });
+            return setErrors({ ...errors, released: 'Please enter a release date' });
         } else if (form.rating === 0 || form.rating > 5) {
-            return setErrors({ ...errors, rating: 'Ingrese un rating entre 1 y 5' });
+            return setErrors({ ...errors, rating: 'Please enter a rating between 1 and 5' });
         } else if (form.genres.length === 0 || form.genres.length > 4) {
-            return setErrors({ ...errors, genres: 'Ingrese entre 1 y 5 géneros' });
+            return setErrors({ ...errors, genres: 'Please, enter between 1 and 5 genders' });
         } else {
             dispatch(postNewGame(form));
+            alert("Game created successfully!")
             navigate('/home');
         };
     };
@@ -80,6 +82,15 @@ const CreateGame = () => {
             rating: 0,
             genres: []
         });
+        setErrors({
+            name: '',
+            background_image: '',
+            description: '',
+            platforms: '',
+            released: '',
+            rating: '',
+            genres: ''
+        })
         document.getElementById('platforms').reset();
     };
 

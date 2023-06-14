@@ -11,7 +11,7 @@ const SearchBar = () => {
     const handlerSubmit = async (event) => {
         event.preventDefault();
         if (!input.length) {
-            alert("Por favor ingrese un nombre");
+            alert("Please, enter a name");
         } else {
             const searchResult = await getGameByName(input)
             dispatch(searchResult);

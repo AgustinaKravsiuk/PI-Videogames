@@ -8,7 +8,7 @@ const initialState = {
     error: '',
 };
 
-const rootReducer = (state=initialState, action) => {
+const rootReducer = (state = initialState, action) => {
     switch (action.type) {
         case GET_ALL_GAMES:
             return {
@@ -48,13 +48,13 @@ const rootReducer = (state=initialState, action) => {
                 ...state,
                 games: filterGenres
             }
-            case FILTER_BY_CREATION:
-                const allGames2 = state.allGames;
-                const filterCreation = action.payload === 'created' ? allGames2.filter((game) => game.createdInDb) : allGames2;
-                return{
-                    ...state,
-                    games: filterCreation
-                }
+        case FILTER_BY_CREATION:
+            const allGames2 = state.allGames;
+            const filterCreation = action.payload === 'created' ? allGames2.filter((game) => game.createdInDb) : allGames2;
+            return {
+                ...state,
+                games: filterCreation
+            }
         case ORDER_BY_NAME:
             if (action.payload === 'ASC') {
                 let orderNameAsc = state.games.sort((a, b) => {
@@ -96,7 +96,7 @@ const rootReducer = (state=initialState, action) => {
                 })
                 return {
                     ...state,
-                    games : orderRatingDes
+                    games: orderRatingDes
                 }
             }
         case POST_NEW_GAME:

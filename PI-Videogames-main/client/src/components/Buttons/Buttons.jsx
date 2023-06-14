@@ -7,7 +7,7 @@ import styles from '../Buttons/Buttons.module.css'
 const Buttons = () => {
     return (
         <div className={styles.buttonsContainer}>
-            <button className={styles.button}><Link to='/form' className={styles.textButton}>Create game</Link></button>
+            <button className={styles.button}><Link to='/form' className={styles.textButton}>Create new game</Link></button>
         </div>
     );
 };

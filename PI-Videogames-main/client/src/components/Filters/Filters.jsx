@@ -11,7 +11,7 @@ const Filters = ({ handleChangeByName, handleChangeByRating, handleChangeCreatio
         event.preventDefault();
         dispatch(getAllGames());
     };
-    
+
 
     const arrOptions = [
         { value: 'DEFAULT', name: 'Select' },
@@ -32,7 +32,7 @@ const Filters = ({ handleChangeByName, handleChangeByRating, handleChangeCreatio
         { value: 'RPG', name: 'RPG' },
         { value: 'Shooter', name: 'Shooter' },
         { value: 'Simulation', name: 'Simulation' },
-        { value: 'Sports', name: 'Sports' },        
+        { value: 'Sports', name: 'Sports' },
         { value: 'Strategy', name: 'Strategy' },
     ]
 
@@ -82,7 +82,7 @@ const Filters = ({ handleChangeByName, handleChangeByRating, handleChangeCreatio
                     </select>
                 </label>
             </div>
-            <button onClick={(event) => handleClick(event)} className={styles.button}><img src={img} alt="imageaActualizar"/></button>
+            <button onClick={(event) => handleClick(event)} className={styles.button}><img src={img} alt="imageaActualizar" /></button>
         </div>
     );
 };

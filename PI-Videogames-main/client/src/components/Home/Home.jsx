@@ -14,8 +14,10 @@ const Home = () => {
     const genres = useSelector((state) => state.genres);
 
     const [pagina, setPagina] = useState(1);
+    // eslint-disable-next-line
     const [porPagina, setPorPagina] = useState(15);
     const [inputPag, setInputPag] = useState(1);
+    // eslint-disable-next-line
     const [order, setOrder] = useState('');
     const currentGames = allGames.slice((pagina - 1) * porPagina, (pagina - 1) * porPagina + porPagina);
 
@@ -25,6 +27,7 @@ const Home = () => {
         if (!allGames.length) {
             dispatch(getAllGames());
         }
+        setPagina(1);
         dispatch(getAllGenres());
     }, [dispatch, allGames]);
 
@@ -71,10 +74,9 @@ const Home = () => {
                             currentGames.map((game) => {
 
                                 return (
-                                    <div className={styles.divCard}>
+                                    <div className={styles.divCard} key={game.id}>
                                         <Card
                                             id={game.id}
-                                            key={game.id}
                                             background_image={game.background_image}
                                             name={game.name}
                                             genres={game?.genres?.join(', ') || ''}

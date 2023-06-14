@@ -18,7 +18,7 @@ export const getAllGames = () => {
             });
         };
     };
-};;
+};
 
 export const getGameByName = (name) => {
     return async (dispatch) => {
