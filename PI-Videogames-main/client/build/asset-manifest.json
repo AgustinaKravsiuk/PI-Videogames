@@ -1,0 +1,25 @@
+{
+  "files": {
+    "main.css": "/static/css/main.64678fa2.chunk.css",
+    "main.js": "/static/js/main.acb826dc.chunk.js",
+    "main.js.map": "/static/js/main.acb826dc.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.f2af1d19.js",
+    "runtime-main.js.map": "/static/js/runtime-main.f2af1d19.js.map",
+    "static/js/2.ccaaa828.chunk.js": "/static/js/2.ccaaa828.chunk.js",
+    "static/js/2.ccaaa828.chunk.js.map": "/static/js/2.ccaaa828.chunk.js.map",
+    "static/js/3.73f067dd.chunk.js": "/static/js/3.73f067dd.chunk.js",
+    "static/js/3.73f067dd.chunk.js.map": "/static/js/3.73f067dd.chunk.js.map",
+    "index.html": "/index.html",
+    "static/css/main.64678fa2.chunk.css.map": "/static/css/main.64678fa2.chunk.css.map",
+    "static/js/2.ccaaa828.chunk.js.LICENSE.txt": "/static/js/2.ccaaa828.chunk.js.LICENSE.txt",
+    "static/media/Landing.module.css": "/static/media/BackLanding1.2c58efbb.gif",
+    "static/media/LogoDetware.3e62c87c.png": "/static/media/LogoDetware.3e62c87c.png",
+    "static/media/logoLanding.25c7c7b3.png": "/static/media/logoLanding.25c7c7b3.png"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.f2af1d19.js",
+    "static/js/2.ccaaa828.chunk.js",
+    "static/css/main.64678fa2.chunk.css",
+    "static/js/main.acb826dc.chunk.js"
+  ]
+}
