@@ -4,7 +4,7 @@ import { GET_ALL_GAMES, GET_GAME_BY_NAME, GET_GAME_DETAIL, CLEAR_DETAIL, GET_ALL
 export const getAllGames = () => {
     return async (dispatch) => {
         try {
-            await axios.get(`http://localhost:3001/videogames`)
+            await axios.get(`/videogames`)
                 .then((res) => {
                     return dispatch({
                         type: GET_ALL_GAMES,
@@ -23,7 +23,7 @@ export const getAllGames = () => {
 export const getGameByName = (name) => {
     return async (dispatch) => {
         try {
-            const response = await axios.get(`http://localhost:3001/videogames?name=${name}`);
+            const response = await axios.get(`/videogames?name=${name}`);
             const game = response.data;
             return dispatch({
                 type: GET_GAME_BY_NAME,
@@ -41,7 +41,7 @@ export const getGameByName = (name) => {
 export const getGameDetail = (idVideogame) => {
     return async (dispatch) => {
         try {
-            const response = await axios.get(`http://localhost:3001/videogames/${idVideogame}`);
+            const response = await axios.get(`/videogames/${idVideogame}`);
             const game = response.data;
             return dispatch({
                 type: GET_GAME_DETAIL,
@@ -65,7 +65,7 @@ export const clearDetail = () => {
 export const getAllGenres = () => {
     return async (dispatch) => {
         try {
-            const response = await axios.get(`http://localhost:3001/genres`);
+            const response = await axios.get(`/genres`);
             const genres = response.data;
             return dispatch({
                 type: GET_ALL_GENRES,
@@ -112,7 +112,7 @@ export const orderByRating = (orderRating) => {
 export const postNewGame = (game) => {
     return async (dispatch) => {
         try {
-            const response = await axios.post(`http://localhost:3001/videogames`, game);
+            const response = await axios.post(`/videogames`, game);
             return dispatch({
                 type: POST_NEW_GAME,
                 payload: response
